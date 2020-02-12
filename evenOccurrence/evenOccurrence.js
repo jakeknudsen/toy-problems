@@ -11,5 +11,24 @@
 */
 
 var evenOccurrence = function(arr) {
-  // Your code here.
-};
+  //   debugger;
+    // Your code here.
+    var obj = {};
+    arr.forEach(function (val) {
+      if (obj[val] !== undefined) {
+        obj[val]++;
+      } else {
+          obj[val] =1;
+      }
+    })
+    for (var key in obj) {
+        if (obj[key] % 2 === 0) {
+            return key;
+            console.log(key);
+        }
+    }
+  };
+  
+  
+   var onlyEven = evenOccurrence([1, 7, 2, 4, 5, 6, 8, 9, 6, 4]);
+  //  console.log(onlyEven); //  4
