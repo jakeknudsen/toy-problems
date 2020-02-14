@@ -39,7 +39,7 @@
 
 // return the number of items in the stack
   this.size = function() {
-    this.storage.length;
+    return this.storage.length;
   };
 
 // return the minimum value in the stack
