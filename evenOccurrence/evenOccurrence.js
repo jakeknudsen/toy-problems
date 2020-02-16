@@ -12,22 +12,23 @@
 
 
 var evenOccurrence = function(arr) {
-  // Your code here.
-  var obj = {};
-  arr.forEach(function (val) {
-    if (obj[val] !== undefined) {
-      obj[val]++;
-    } else {
-        obj[val] =1;
+  //   debugger;
+    // Your code here.
+    var obj = {};
+    for (var i = 0; i < arr.length; i++) {
+        if (obj[arr[i]] === undefined) {
+          obj[arr[i]] = 1;
+        } else {
+          obj[arr[i]]++
+        }
     }
-  })
-  for (var key in obj) {
-      if (obj[key] % 2 === 0) {
-          return key;
-      }
+  for (var i = 0; i < arr.length; i++) {
+    if (obj[arr[i]] % 2 === 0) {
+      return arr[i];
+    }
   }
-  return null;
-};
+    return null;
+  };
   
   
    var onlyEven = evenOccurrence([1, 7, 2, 4, 5, 6, 8, 9, 6, 4]);
