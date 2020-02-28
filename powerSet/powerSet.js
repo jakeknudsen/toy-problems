@@ -18,4 +18,22 @@
  */
 
 var powerSet = function(str) {
-};
+    let powerArr = [];
+  
+    str = str.split('').sort();
+  
+    var letter = (word, string) => {
+  
+      if (!powerArr.includes(word)) {
+          powerArr.push(word);
+      }
+  
+      for (var i = 0; i < string.length; i++) {
+        letter(word + string[i], string.slice(0, i));
+      }
+    }
+    
+    letter('', str);
+  
+    return powerArr;
+  };
