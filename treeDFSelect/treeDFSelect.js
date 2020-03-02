@@ -36,7 +36,22 @@ var Tree = function(value) {
 };
 
 Tree.prototype.DFSelect = function(filter) {
-};
+  //     debugger;
+    // returns an array of all the things that are true to the function
+    var result = [];
+    var recruseNodes = (child, index) => {
+        if (!child[index]) {
+            return result
+        }
+        if (filter(child[0].value, index)) {
+            result.push(child[0].value)
+            recruseNodes(child, index + 1)
+        }
+        recruseNodes(child, index + 1)
+    }
+    recruseNodes(this.children, 0)
+    return result;
+  };
 
 
 
