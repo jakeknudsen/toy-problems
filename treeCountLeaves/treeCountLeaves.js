@@ -49,9 +49,9 @@ Tree.prototype.countLeaves = function () {
           recurse(currentNode.children[i]);
       }
   }
-  recurse(this)
+  recurse(this);
   // if trees children contain enmpty array increment count. solve for parent
-  return leafCount
+  return leafCount;
 };
 
 /**
