@@ -34,7 +34,23 @@
 'use strict';
 
 var compose = function() {
+    var args = Array.from(arguments);
+  
+  return function(param) {
+    args.forEach((task) => {
+      param = task(param) 
+    })
+   return param;
+  };
 };
 
 var pipe = function() {
+      var args = Array.from(arguments);
+  
+  return function(param) {
+    args.forEach((task) => {
+      param = task(param) 
+    })
+   return param;
+  };
 };
