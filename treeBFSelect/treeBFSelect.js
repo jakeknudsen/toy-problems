@@ -37,20 +37,32 @@ var Tree = function(value) {
 
 
 
+
 Tree.prototype.BFSelect = function(filter) {
-  // return an array of values for which the function filter(value, depth) returns true
-  var result = [];
-  var recurse = (currentNode, depth) => {
-      if (filter(currentNode.value, depth)) {
-          result.push(currentNode.value)
-      } 
-      
-      for (var i = 0; i < currentNode.children.length; i++) {
-          recurse(currentNode.children[i], depth + 1);
+  var results = [];
+
+  var checkNodes = function(value, depth) {
+    var queue = [];
+
+    // Loop through queue, evaluate filter function
+    for (var i = 0; i < value.length; i++) {
+      if (filter(value[i].value, depth)) {
+        results.push(value[i].value);
       }
-  }
-  recurse(this, 0)
-  return result;
+      // Queue up any child value
+      for (var j = 0; j < value[i].children.length; j++) {
+        queue.push(value[i].children[j]);
+      }
+    }
+    // If there are children to process, recurse
+    if (queue.length > 0) {
+      checkNodes(queue, depth + 1);
+    } else {
+      return;
+    }
+  };
+  checkNodes([this], 0);
+  return results;
 };
 
 /**
@@ -98,10 +110,10 @@ Tree.prototype.isDescendant = function(child) {
   * remove an immediate child
   */
 Tree.prototype.removeChild = function(child) {
-  var index = this.children.indexOf(child);
-  if (index !== -1) {
+  var idx = this.children.indexOf(child);
+  if (idx !== -1) {
     // remove the child
-    this.children.splice(index, 1);
+    this.children.splice(idx, 1);
   } else {
     throw new Error('That node is not an immediate child of this tree');
   }
