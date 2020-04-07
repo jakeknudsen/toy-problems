@@ -41,6 +41,31 @@ var phoneDigitsToLetters = {
 };
 
 
+
 var telephoneWords = function(digitString) {
   // TODO: return every combination that can be spelled on a phone with these digits
-};
+  var str = '';
+   var anagrams = {};
+
+   for(var i = 0; i < digitString.length; i ++) {
+     var string
+     string = phoneDigitsToLetters[digitString[i]]
+     str += string;
+   }
+
+  var addLetters = (text, options) => {
+    if (text.length === digitString.length) {
+      anagrams[text] = true
+    } 
+
+    for (var i = 0; i < options.length; i++) {
+      addLetters(text + options[i], options.slice(0, 1) + options.slice(i + 1));
+    }
+
+  };
+
+  addLetters('', str)
+
+  return Object.keys(anagrams)
+}
+

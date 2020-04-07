@@ -14,27 +14,56 @@
  *  example.min() === 2
  */
 
+
+
 /**
   * Stack Class
   */
-  var Stack = function() {
+ 
 
-  // add an item to the top of the stack
-    this.push = function(value) {
-    };
+/**
+  * Stack Class
+  */
+ var Stack = function() {
+  this.storage = [];
 
-  // remove an item from the top of the stack
-    this.pop = function() {
-    };
-
-  // return the number of items in the stack
-    this.size = function() {
-    };
-  
-  // return the minimum value in the stack
-    this.min = function() {
-
-    };
-
+// add an item to the top of the stack
+  this.push = function(value) {
+    this.storage.push(value)
   };
+
+// remove an item from the top of the stack
+  this.pop = function() {
+    this.storage.pop()
+  };
+
+// return the number of items in the stack
+  this.size = function() {
+    return this.storage.length;
+  };
+
+// return the minimum value in the stack
+  this.min = function() {
+   var min = this.storage[0];
+   var storage = this.storage
+     for (var i = 0; i < storage.length; i++) {
+       if (min > storage[i]) {
+         min = storage[i];
+       }
+     }
+     return min
+  };
+};
+
+// var example = new Stack()
+// example.push(4)
+// example.push(3)
+// example.min() === 3
+// example.push(3)
+// example.push(2)
+// example.push(2)
+// example.min() === 2
+// example.push(21)
+// example.pop()
+// example
 

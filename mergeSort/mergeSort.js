@@ -99,4 +99,41 @@
 
 var mergeSort = function(array) {
   // Your code here.
+  // seperate into two different arrays
+  var rightArr = [];
+  var leftArr = [];
+  //find the middle
+  var pivot = array.length/2;
+  for (var i = 0; i < array.length; i++){
+      if (array[i] < pivot) {
+          rightArr.push(array[i])
+      } else {
+          leftArr.push(array[i])
+      }
+  }
+  //default index for each array
+  var j = 0;
+  var i = 0;
+  //resullts array
+  var results = [];
+  //while i < length || j < length
+	while (i < leftArr.length || j < rightArr.length) {
+	    //if i === left length add to results
+		if (i === leftArr.length) {
+			// j is the only index left
+			results.push(rightArr[j]);
+			j++;
+		} 
+		// if j === right length or i < right arr 
+      else if (j === rightArr.length || leftArr[i] <= rightArr[j]) {
+          // add left to results
+			results.push(leftArr[i]);
+			i++;
+		} else {
+		    //else right into results
+			results.push(rightArr[j]);
+			j++;
+		}
+	}
+ return results;
 };

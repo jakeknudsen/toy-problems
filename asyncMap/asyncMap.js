@@ -37,6 +37,19 @@
  *
  */
 
-
 var asyncMap = function(tasks, callback) {
+    var resultsArray = [];
+    var counter = 0;
+
+    tasks.forEach((task, index) => {
+       new Promise(resolve => {
+         task((results) => {
+           counter++;
+           resultsArray[index] = results
+           if (counter === tasks.length) {
+             callback(resultsArray);
+           }
+         });
+       });
+    });
 };
