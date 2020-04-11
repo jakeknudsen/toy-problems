@@ -14,8 +14,13 @@
  *
  * Target time complexity: O(log(array.length))
  */
-
 var rotatedArraySearch = function (rotated, target) {
   // Your code here:
+  var result = rotated.indexOf(target);
+  if (result === - 1) {
+      return null
+  } else {
+      return result
+  }
 };
 
