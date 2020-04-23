@@ -7,34 +7,25 @@
  */
 
 /**
-  * example usage:
-  * var anagrams = allAnagrams('abc');
-  * console.log(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
-  */
+ * example usage:
+ * var anagrams = allAnagrams('abc');
+ * console.log(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
+ */
 
- var allAnagrams = function(string) {
+var allAnagrams = function (string) {
   // Your code here.
-  var result = [];
-  var string = string.split('')
 
-  var swap = (index) => {
-      if (index === string.length){
-          return
-      }
-      result.push(string.join(''))
-      var temp = string[1]
-      var starting = string[0];
-      string[1] = string[2]
-      string[2] = temp
-      result.push(string.join(''))  
-      string[0] = string[1]
-      string[1] = starting
-//       string = string.substring(1) + string.charAt(0);
- 
-    
-   swap(index + 1)
-  }
-  swap(0)
-  
-  return result
+  var uniqueOutput = {};
+
+  (function anagram(ana, str) {
+    if (str === "") {
+      uniqueOutput[ana] = 1;
+    }
+
+    for (var i = 0; i < str.length; i++) {
+      anagram(ana + str[i], str.slice(0, i) + str.slice(i + 1));
+    }
+  })("", string);
+
+  return Object.keys(uniqueOutput);
 };
